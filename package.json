@@ -8,7 +8,11 @@
     "start": "next start"
   },
   "dependencies": {
+    "@ai-sdk/openai": "^2.0.88",
+    "ai": "^5.0.115",
+    "install": "^0.13.0",
     "next": "16.1.0",
+    "npm": "^11.7.0",
     "react": "19.2.3",
     "react-dom": "19.2.3"
   },
