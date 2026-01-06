@@ -31,12 +31,4 @@ Try it live: [https://react-ai-fitness-app-anusha.vercel.app/](https://react-ai-
 - **State & UX:** useState, useEffect, localStorage, inline errors  
 - **Styling:** CSS (custom or Tailwind CSS optional)  
 
----
-
-## Screenshots / Demo
-
-> Replace with your own screenshots or GIFs showing:  
-> 1. Filling the form  
-> 2. Generating the plan  
-> 3. Printing the table  
 
