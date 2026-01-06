@@ -1,27 +1,42 @@
-# React AI Fitness App
+# AI Fitness Assistant
 
-An AI-powered fitness application built using **React, Next.js, and OpenAI**.
+Generate a **5-day personalized workout and meal plan** using AI, with form validation, print-friendly tables, and a polished UI.
 
-## 🚀 Goals
-- Learn how to integrate AI into frontend applications
-- Build smart fitness recommendations
-- Explore AI APIs with Next.js server routes
+---
 
-## 🧠 Tech Stack
-- React
-- Next.js (App Router)
-- TypeScript
-- OpenAI API
+## Live Demo
 
-## 🔒 Security
-- API keys are stored in `.env.local`
-- `.env.local` is ignored via `.gitignore`
+Try it live: [https://react-ai-fitness-app-anusha.vercel.app/](https://react-ai-fitness-app-anusha.vercel.app/)
 
+---
 
-## 📌 Status
-🚧 Initial setup — AI features coming soon
+## Features
 
-## 🛠️ Setup
-```bash
-npm install
-npm run dev
+- User-friendly **form with inline validation**  
+- **AI-generated workouts** tailored to goal, level, duration, and equipment  
+- **Realistic meal suggestions** (recipes instead of just ingredients)  
+- **Print-friendly workout plan table**  
+- **Form disabled while generating plan** for better UX  
+- **Groceries input sanitized** to prevent invalid data  
+- **LocalStorage persistence** for plan and form across page refreshes  
+- Responsive layout for desktop and mobile  
+
+---
+
+## Tech Stack
+
+- **Frontend:** React 18, Next.js 16.1, JSX  
+- **Backend:** Next.js API routes  
+- **AI:** OpenAI GPT-4 (via `@ai-sdk/openai`)  
+- **State & UX:** useState, useEffect, localStorage, inline errors  
+- **Styling:** CSS (custom or Tailwind CSS optional)  
+
+---
+
+## Screenshots / Demo
+
+> Replace with your own screenshots or GIFs showing:  
+> 1. Filling the form  
+> 2. Generating the plan  
+> 3. Printing the table  
+
