@@ -1,93 +1,95 @@
-
-.fitness-form {
-  display: flex;
-  flex-direction: column;
-  max-width: 400px;
-  margin: 2rem auto;
-  padding: 2rem;
-  background-color: #f9f9f9;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  font-family: Arial, sans-serif;
-}
-
-.fitness-form input {
-  padding: 0.6rem 1rem;
-  margin-bottom: 1rem;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 1rem;
-}
-
-.fitness-form button {
-  padding: 0.8rem 1.2rem;
-  background-color: #7c3aed; /* Purple */
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-.fitness-form button:hover {
-  background-color: #6b21a8;
-}
-
-.fitness-output {
-  margin-top: 2rem;
-  padding: 1rem;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  white-space: pre-wrap; 
-  font-family: monospace;
-}
-.container {
-  max-width: 600px;
-  margin: 40px auto;
-  padding: 20px;
-}
-
 h1 {
   text-align: center;
-  margin-bottom: 24px;
+  font-family: sans-serif;
+  margin-bottom: 1rem;
+  color: #0000FF;
 }
 
 .fitness-form {
+  max-width: 500px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 1rem;
 }
 
-label {
+.fitness-form label {
   display: flex;
   flex-direction: column;
-  font-weight: 500;
+  font-weight: 700;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
 }
 
-select,
-textarea {
-  padding: 10px;
-  margin-top: 6px;
-  border-radius: 6px;
+
+.fitness-form label span.required::after {
+  content: " *";
+  color: red;
+  font-weight: 700;
+  margin-left: 2px; 
+  font-size: 1rem;
+}
+
+.fitness-form select,
+.fitness-form textarea,
+.fitness-form input {
+  padding: 8px;
+  font-size: 1rem;
+  border-radius: 5px;
   border: 1px solid #ccc;
+  margin-top: 4px;
 }
 
-textarea {
-  min-height: 80px;
-}
 
-.primary-btn {
-  background-color: #7c3aed; /* purple */
+button {
+  background-color: #0000FF;
   color: white;
-  padding: 12px;
-  border-radius: 8px;
+  font-weight: bold;
+  padding: 10px;
   border: none;
+  border-radius: 5px;
   cursor: pointer;
-  font-size: 16px;
 }
 
-.primary-btn:hover {
-  background-color: #6d28d9;
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.error {
+  color: red;
+  font-size: 0.85rem;
+  margin-top: 4px;
+}
+
+.helper-text {
+  color: #2d7a2d;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+
+.plan-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.plan-table th,
+.plan-table td {
+  border: 1px solid #333;
+  padding: 8px;
+  text-align: left;
+}
+
+.plan-table th {
+  background: #f2f2f2;
+}
+
+
+.container {
+  padding: 2rem;
 }

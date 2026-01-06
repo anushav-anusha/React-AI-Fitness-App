@@ -1,55 +1,87 @@
 import { openai } from "@ai-sdk/openai";
 import { generateText } from "ai";
 
+function extractJSON(text) {
+  const match = text.match(/\{[\s\S]*\}/);
+  return match ? match[0] : null;
+}
+
 export async function POST(req) {
+  let payload;
+
   try {
-    const body = await req.json();
-    const {
-      goal,
-      level,
-      duration,
-      equipment,
-      groceries
-    } = body;
+    payload = await req.json();
+  } catch {
+    return Response.json({ error: "Invalid request body" }, { status: 400 });
+  }
 
-    const prompt = `
-You are a professional fitness coach and nutrition expert.
+  const { goal, level, duration, equipment, groceries } = payload;
 
-Create a personalized fitness plan based on the following details:
+  if (!goal || !level || !duration) {
+    return Response.json(
+      { error: "Missing required fields" },
+      { status: 400 }
+    );
+  }
 
-Fitness Goal: ${goal}
-Experience Level: ${level}
-Workout Duration: ${duration}
-Equipment Available: ${equipment}
+  const prompt = `
+You are a backend service.
 
-Available Groceries: ${groceries}
+Return STRICT JSON only.
+No markdown.
+No explanation.
+No comments.
 
-Requirements:
-1. Provide a 5-day workout plan with exercise names and brief instructions.
-2. Adjust intensity based on experience level.
-3. Suggest simple meals using only the provided groceries.
-4. Add 2–3 general fitness tips.
-5. Keep the response concise and beginner-friendly.
+Schema:
+{
+  "days": [
+    {
+      "day": "Day 1",
+      "workouts": ["string"],
+      "meals": ["string"],
+      "tips": ["string"]
+    }
+  ]
+}
+
+Rules:
+- Exactly 5 days
+- Short strings (5-8 words)
+- Meals should be realistic meal ideas or simple recipes, not just ingredients
+- Use only groceries listed
+- Provide variety in meals across days
+- Example meals: "Oatmeal with banana", "Grilled chicken salad", "Vegetable stir-fry"
+
+Input:
+Goal: ${goal}
+Level: ${level}
+Duration: ${duration}
+Equipment: ${equipment || "none"}
+Groceries: ${groceries || "none"}
 `;
 
+  try {
     const result = await generateText({
       model: openai("gpt-4o-mini"),
-      prompt
+      prompt,
+      temperature: 0
     });
 
-    console.log(JSON.stringify({ result: result.text }),
-      { status: 200 })
+    const jsonText = extractJSON(result.text);
 
-    return new Response(
-      JSON.stringify({ result: result.text }),
-      { status: 200 }
-    );
-  } catch (error) {
-    console.error("WORKOUT ERROR:", error);
+    if (!jsonText) {
+      throw new Error("No JSON found in response");
+    }
 
-    return new Response(
-      JSON.stringify({ error: "Failed to generate plan" }),
-      { status: 500 }
+    const data = JSON.parse(jsonText);
+
+    return Response.json(data);
+  } catch (err) {
+    console.error("AI response error:", err);
+
+    return Response.json(
+      { error: "Workout generation failed" },
+      { status: 502 }
     );
   }
 }
